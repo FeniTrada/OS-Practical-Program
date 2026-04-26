@@ -1,0 +1,10 @@
+echo "Enter message to send:"
+read msg
+
+# Get list of logged-in users
+users=$(who | awk '{print $1}' | sort | uniq)
+
+for u in $users
+do
+    echo "$msg" | write $u
+done
