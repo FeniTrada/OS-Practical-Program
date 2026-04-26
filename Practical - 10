@@ -1,0 +1,12 @@
+if [ $# -eq 0 ]
+then
+    echo "Please enter numbers as command line arguments"
+    exit 1
+fi
+
+echo "Original numbers: $@"
+
+sorted=$(echo $@ | tr ' ' '\n' | sort -nr)
+
+echo "Sorted numbers in descending order:"
+echo "$sorted"
