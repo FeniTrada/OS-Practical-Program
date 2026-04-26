@@ -1,0 +1,52 @@
+#!/bin/bash
+
+echo "enter your name"
+read name
+
+echo "enter your enrollment number"
+read enroll
+
+echo "enter marks of ADA"
+read ada
+
+echo "enter marks of OS"
+read os
+
+echo "enter marks of OOP"
+read oop
+
+echo "marksheet"
+echo "your name is : $name"
+echo "your enrollment number is : $enroll"
+echo "your subject wise marks :"
+echo "ADA : $ada"
+echo "OS : $os"
+echo "OOP : $oop"
+
+sum=$((ada + os + oop))
+echo "total sum is : $sum"
+
+per=$((sum * 100 / 300))
+echo "percentage is : $per"
+
+if [ $per -ge 80 ]
+then
+    echo "grade is : A"
+elif [ $per -ge 70 ]
+then
+    echo "grade is : B"
+elif [ $per -ge 60 ]
+then
+    echo "grade is : C"
+elif [ $per -ge 50 ]
+then
+    echo "grade is : D"
+elif [ $per -ge 40 ]
+then
+    echo "grade is : E"
+elif [ $per -ge 30 ]
+then
+    echo "grade is : F"
+else
+    echo "grade is : Fail"
+fi
