@@ -1,0 +1,40 @@
+echo "Enter date (dd-mm-yyyy):"
+read date
+
+# Split input into day, month, year
+IFS='-' read d m y <<< "$date"
+
+# Remove leading zeros (e.g., 02 -> 2)
+d=$((10#$d))
+m=$((10#$m))
+y=$((10#$y))
+
+# Basic validation
+if [ $d -le 0 ] || [ $m -le 0 ] || [ $m -gt 12 ]
+then
+    echo "Invalid Date"
+    exit
+fi
+
+# Days in month
+case $m in
+    1|3|5|7|8|10|12) max=31 ;;
+    4|6|9|11) max=30 ;;
+    2)
+        # Leap year check
+        if [ $((y % 4)) -eq 0 ] && [ $((y % 100)) -ne 0 ] || [ $((y % 400)) -eq 0 ]
+        then
+            max=29
+        else
+            max=28
+        fi
+        ;;
+esac
+
+# Final validation
+if [ $d -le $max ]
+then
+    echo "Valid Date"
+else
+    echo "Invalid Date"
+fi
